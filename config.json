@@ -1,0 +1,11 @@
+{
+  "production": {
+    "username": "root",
+    "password": "root",
+    "database": "chatbottest",
+    "host": "localhost",
+    "dialect": "mysql",
+    "define": { "timestamps": false }
+
+  }
+}

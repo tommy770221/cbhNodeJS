@@ -1,0 +1,1 @@
+sequelize-auto -h localhost -d chatbottest -u root -x root -p 3306  --dialect mysql -o "./models"
