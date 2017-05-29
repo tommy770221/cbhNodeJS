@@ -9,12 +9,15 @@ var session = require('express-session');
 var expressValidator = require('express-validator');
 var methodOverride = require('method-override');
 var router = express.Router();
+var nodejieba = require("nodejieba");
+
 
 var baseDir='/cbhJs';
 var index = require('./routes/index');
 var users = require('./routes/users');
 var disease = require('./routes/disease.js');
 var hospitalInfo = require('./routes/hospitalInfo.js');
+var lineBot = require('./routes/lineBot.js');
 
 var app = express();
 
@@ -36,6 +39,8 @@ app.use(baseDir+'/', index);
 app.use(baseDir+'/users', users);
 app.use(baseDir+'/disease', disease);
 app.use(baseDir+'/hospitalInfo', hospitalInfo);
+app.use(baseDir+'/line', lineBot);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,6 +67,7 @@ app.use(methodOverride(function(req, res){
         return method;
     }
 }));
+
 
 module.exports = app;
 console.log("app start");
