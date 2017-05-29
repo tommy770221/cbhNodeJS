@@ -1,5 +1,29 @@
-extends layout
+//
+   Created by Tommy on 2017/5/29.
 
+extends layout/adminlte/base
 block content
-  h1= title
-  p Welcome to #{title}
+    section.content-header
+        h1
+            | #{title}
+            small it all starts here
+        ol.breadcrumb
+            li
+                a(href='#')
+                    i.fa.fa-dashboard
+                    | Level
+            li.active Here
+    section.content
+        .box
+            .box-header.with-border
+                h3.box-title
+                    | Title
+                .box-tools.pull-right
+                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+                        i.fa.fa-minus
+                    button(type='button', data-widget='remove', data-toggle='tooltip',title='Remove').btn.btn-box-tool
+                        i.fa.fa-times
+            .box-body
+                | Start Creating your amazing application!
+            .box-footer
+                | Footer

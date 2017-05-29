@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('disease', {
+  return sequelize.define('Disease', {
     doc_category: {
       type: DataTypes.TEXT,
       allowNull: true

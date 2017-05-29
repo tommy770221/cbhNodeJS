@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
   var balance = web3.eth.getBalance(coinbase);
   console.log(balance.toString(10));
-  res.send('respond with a resource');
+  res.render('layout/blog');
 });
 
 /* GET users listing. */
