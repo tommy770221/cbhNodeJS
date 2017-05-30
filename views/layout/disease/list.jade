@@ -37,7 +37,7 @@ block content
                             i.icon.fa.fa-ban
                             | Alert!
                         | !{messages.msg_error}
-                a(href='customers/add').pull-left.btn.btn-primary
+                a(href=baseDir+'/disease/add').pull-left.btn.btn-primary
                     i.fa.fa-plus
                     |  Add Customer
                 .data-table
@@ -52,7 +52,7 @@ block content
                             th
                                 | 症狀
                             th
-                                | 新增
+                                | 修改
                             th
                                 | 刪除
                             if messages.msg_error
@@ -66,11 +66,11 @@ block content
                                         td #{Disease.symptom}
                                         td
                                             div(style='display:inline-block')
-                                                a(href='/customers/edit/#{Disease.id}').btn.btn-sm.btn-primary
+                                                a(href=baseDir+'/disease/edit/#{Disease.id}').btn.btn-sm.btn-primary
                                                     i.fa.fa-edit
                                         td
                                             div(style='display:inline-block')
-                                                form(method='post', action='/customers/delete/#{Disease.id}')
+                                                form(method='post', action=baseDir+'/disease/delete/#{Disease.id}')
                                                     input(type="hidden",name="_method", value="DELETE")
                                                     button.btn.btn-sm.btn-danger(type='submit')
                                                         i.fa.fa-remove

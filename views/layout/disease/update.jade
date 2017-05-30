@@ -22,7 +22,7 @@ block content
                         i.fa.fa-minus
 
             .box-body
-                form(role='form',method='post' action=baseDir+'/disease/add')
+                form(role='form',method='post' action=baseDir+'/disease/edit/'+disease.id)
                     .row
 
                         .col-xs-6
@@ -38,19 +38,19 @@ block content
                                 .form-group
                                     label
                                         | 醫別
-                                    input(type='text',name='doc_category',placeholder='Enter 中西醫', autofocus).form-control
+                                    input(type='text',name='doc_category',value=disease.doc_category,placeholder='Enter 中西醫', autofocus).form-control
                                 .form-group
                                     label
                                         | 科別小項
-                                    input(type='text',name='category',placeholder='Enter 科別小項').form-control
+                                    input(type='text',name='category',value=disease.category,placeholder='Enter 科別小項').form-control
                                 .form-group
                                     label
                                         | 大項分類
-                                    input(type='text',name='big_category',placeholder='Enter 大項分類').form-control
+                                    input(type='text',name='big_category',value=disease.big_category,placeholder='Enter 大項分類').form-control
                                 .form-group
                                     label
                                         | 症狀
-                                    input(type='text',name='symptom',placeholder='Enter Symptom').form-control
+                                    input(type='text',name='symptom',value=disease.symptom,placeholder='Enter Symptom').form-control
                             .box-footer
                                 button(type='submit').btn.btn-primary
                                     | Submit
