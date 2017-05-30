@@ -27,6 +27,7 @@
     "express-validator":"3.2.0",
     "method-override":"2.3.9",
     "express-paginate" :"0.2.2",
-    "collections":"5.0.6"
+    "collections":"5.0.6",
+    "botly":"1.4.1"
   }
 }
