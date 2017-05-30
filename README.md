@@ -1,6 +1,7 @@
 # cbhNodeJS
 ETH Blockchain Oracle
 
+先把npm_module init  :    npm install <br>
 執行: npm run start
 
 訪問 http://localhost:3000/cbhJs/users <br>

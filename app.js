@@ -10,6 +10,7 @@ var expressValidator = require('express-validator');
 var methodOverride = require('method-override');
 var router = express.Router();
 var nodejieba = require("nodejieba");
+var paginate = require('express-paginate');
 
 
 var baseDir='/cbhJs';
@@ -21,6 +22,7 @@ var lineBot = require('./routes/lineBot.js');
 
 var app = express();
 
+app.locals.baseDir=baseDir;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -34,12 +36,15 @@ app.use(cookieParser());
 app.use(baseDir,express.static(path.join(__dirname, 'public')));
 app.use(flash());
 app.use(session({secret:"secretpass123456"}));
+app.use(paginate.middleware(10, 50));
 
 app.use(baseDir+'/', index);
 app.use(baseDir+'/users', users);
 app.use(baseDir+'/disease', disease);
 app.use(baseDir+'/hospitalInfo', hospitalInfo);
 app.use(baseDir+'/line', lineBot);
+
+
 
 
 // catch 404 and forward to error handler

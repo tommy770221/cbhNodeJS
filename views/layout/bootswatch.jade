@@ -3,7 +3,7 @@ append styles
 	// Bootstrap theme
 	+bootswatch("cerulean")
 	// Custom styles for this template
-	link(href='./css/theme.css', rel='stylesheet')
+	link(href=baseDir+'/css/theme.css', rel='stylesheet')
 block body
 	// Fixed navbar
 	nav.navbar.navbar-default.navbar-fixed-top
@@ -95,7 +95,7 @@ block body
 				+table-condensed(["#","First Name","Last Name","Username"],[["1","Mark","Otto","@mdo"],["2","Jacob","Thornton","@fat"],["3","Larry","the Bird","@twitter"]])
 		.page-header
 			h1 Thumbnails
-		img.img-thumbnail(src='../images/thumb.jpg', alt='A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera')
+		img.img-thumbnail(src=baseDir+'/images/thumb.jpg', alt='A generic square placeholder image with a white border around it, making it resemble a photograph taken with an old instant camera')
 		.page-header
 			h1 Labels
 		h1
@@ -348,4 +348,4 @@ block body
 				| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Aenean lacinia bibendum nulla sed consectetur.
 		.page-header
 			h1 Carousel
-		+carousel("example-generic",[{image:'../images/carousel/slide1.jpg'},{image:'../images/carousel/slide2.jpg'},{image:'../images/carousel/slide3.jpg',}])
+		+carousel("example-generic",[{image:baseDir+'/images/carousel/slide1.jpg'},{image:baseDir+'/images/carousel/slide2.jpg'},{image:baseDir+'/images/carousel/slide3.jpg',}])

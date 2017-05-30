@@ -1,16 +1,21 @@
 var express = require('express');
 var router = express.Router();
+var paginate = require('express-paginate');
 var models = require('../models/index');
 
 
 
 /* GET diseases listing. */
 router.get('/', function(req, res, next) {
-   models.Disease.findAll(
-       { limit: 5,
-         offset: 0
+
+
+    models.Disease.findAll(
+       { limit: req.query.limit,
+         offset: (req.query.page-1)*req.query.limit
        }).then(function(diseases) {
-       res.render('layout/disease/list',{title:"Customers",data:diseases});
+        var pageCount=5;
+        var pages = paginate.getArrayPages(req)(3, pageCount, req.query.page);
+       res.render('layout/disease/list',{title:"Customers",data:diseases, pages: pages,pageCount:pageCount});
       // res.json(todos[0]);
    }).catch(function (err) {
        // handle error;

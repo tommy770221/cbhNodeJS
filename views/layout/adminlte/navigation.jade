@@ -1,7 +1,7 @@
 //
    Created by Tommy on 2017/5/29.
 header.main-header
-    a(href='./').logo
+    a(href=baseDir+'/').logo
         span.logo-mini
             <b>A</b> LT
         span.logo-lg
@@ -27,7 +27,7 @@ header.main-header
                                 li
                                     a(href='#')
                                         .pull-left
-                                            img(src='../adminlte/dist/img/user2-160x160.jpg',alt="User image").img-circle
+                                            img(src=baseDir+'/adminlte/dist/img/user2-160x160.jpg',alt="User image").img-circle
                                         h4
                                             | Support Team
                                             small
@@ -81,12 +81,12 @@ header.main-header
                                 | View all tasks
                 li.dropdown.user.user-menu
                     a(href='#',data-toggle='dropdown').dropdown-toggle
-                        img(src='../adminlte/dist/img/user2-160x160.jpg',alt='User Image').user-image
+                        img(src=baseDir+'/adminlte/dist/img/user2-160x160.jpg',alt='User Image').user-image
                         span.hidden-xs
                             | Alexander Pierce
                     ul.dropdown-menu
                         li.user-header
-                            img(src='../adminlte/dist/img/user2-160x160.jpg',alt='User Image').img-circle
+                            img(src=baseDir+'/adminlte/dist/img/user2-160x160.jpg',alt='User Image').img-circle
                             p
                                 | Alexander Pierce - Web Developer
                                 small

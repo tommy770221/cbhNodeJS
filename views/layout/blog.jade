@@ -1,16 +1,16 @@
 extends ../_bootstrap
 append styles
 	// Custom styles for this template
-	link(href='./css/blog.css', rel='stylesheet')
+	link(href=baseDir+'/css/blog.css', rel='stylesheet')
 block body
 	.blog-masthead
 		.container
 			nav.blog-nav
-				a.blog-nav-item.active(href='./') Home
-				a.blog-nav-item(href='./') New features
-				a.blog-nav-item(href='./') Press
-				a.blog-nav-item(href='./') New hires
-				a.blog-nav-item(href='./') About
+				a.blog-nav-item.active(href=baseDir+'/') Home
+				a.blog-nav-item(href=baseDir+'/') New features
+				a.blog-nav-item(href=baseDir+'/') Press
+				a.blog-nav-item(href=baseDir+'/') New hires
+				a.blog-nav-item(href=baseDir+'/') About
 	.container
 		.blog-header
 			h1.blog-title The Bootstrap Blog
