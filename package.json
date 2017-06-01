@@ -28,6 +28,8 @@
     "method-override":"2.3.9",
     "express-paginate" :"0.2.2",
     "collections":"5.0.6",
-    "botly":"1.4.1"
+    "botly":"1.4.1",
+    "mongoose": "4.2.6",
+    "lodash": "^4.17.0"
   }
 }
