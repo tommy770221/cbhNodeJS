@@ -1,0 +1,340 @@
+extends  layout/hospital/layout
+
+block content
+    div.container-fluid
+        .row.bg-title
+            .col-lg-3.col-md-4.col-sm-4.col-xs-12
+                h4.page-title Hospital Dashboard
+            .col-lg-9.col-sm-8.col-md-8.col-xs-12
+                a.btn.btn-danger.pull-right.m-l-20.btn-rounded.btn-outline.hidden-xs.hidden-sm.waves-effect.waves-light(href="index.html", target="_blank") Buy Now
+
+                ol.breadcrumb
+                    li
+                        a(href="index.html") Hospital
+
+                    li.active Dashboard
+            // /.col-lg-12
+        // row
+        .row
+            .col-md-3.col-sm-6
+                .white-box
+                    .r-icon-stats
+                        i.ti-user.bg-megna
+
+                        .bodystate
+                            h4 370
+
+                            span.text-muted New Patient
+
+            .col-md-3.col-sm-6
+                .white-box
+                    .r-icon-stats
+                        i.ti-shopping-cart.bg-info
+
+                        .bodystate
+                            h4 342
+
+                            span.text-muted OPD Patient
+
+            .col-md-3.col-sm-6
+                .white-box
+                    .r-icon-stats
+                        i.ti-wallet.bg-success
+
+                        .bodystate
+                            h4 13
+
+                            span.text-muted Today's Ops.
+
+            .col-md-3.col-sm-6
+                .white-box
+                    .r-icon-stats
+                        i.ti-wallet.bg-inverse
+
+                        .bodystate
+                            h4 $34650
+
+                            span.text-muted Hospital Earning
+        // /row
+        // .row
+        .row
+            .col-md-4.col-sm-12.col-xs-12
+                .white-box
+                    h3.box-title
+                        small.pull-right.m-t-10.text-success
+                            i.fa.fa-sort-asc
+                            |  18% High then last month
+                        |  New Patient
+
+                    .stats-row
+                        .stat-item
+                            h6 Overall
+
+                            b 80.40%
+
+                        .stat-item
+                            h6 Montly
+
+                            b 15.40%
+
+                        .stat-item
+                            h6 Day
+
+                            b 5.50%
+
+                    #sparkline8.minus-mar
+
+            .col-md-4.col-sm-12.col-xs-12
+                .white-box
+                    h3.box-title
+                        small.pull-right.m-t-10.text-danger
+                            i.fa.fa-sort-desc
+                            |  18% less then last month
+                        | OPD Patients
+
+                    .stats-row
+                        .stat-item
+                            h6 Overall
+
+                            b 80.40%
+
+                        .stat-item
+                            h6 Montly
+
+                            b 15.40%
+
+                        .stat-item
+                            h6 Day
+
+                            b 5.50%
+
+                    #sparkline9.minus-mar
+
+            .col-md-4.col-sm-12.col-xs-12
+                .white-box
+                    h3.box-title
+                        small.pull-right.m-t-10.text-success
+                            i.fa.fa-sort-asc
+                            |  18% High then last month
+                        | Treatment
+
+                    .stats-row
+                        .stat-item
+                            h6 Overall Growth
+
+                            b 80.40%
+
+                        .stat-item
+                            h6 Montly
+
+                            b 15.40%
+
+                        .stat-item
+                            h6 Day
+
+                            b 5.50%
+
+                    #sparkline10.minus-mar
+        // /.row
+        // row
+        .row
+            .col-md-6.col-lg-6.col-sm-12.col-xs-12
+                .white-box
+                    h3.box-title Patients In
+
+                    ul.list-inline.text-center
+                        li
+                            h5
+                                i.fa.fa-circle.m-r-5(style="color: #00bfc7;")
+                                | OPD
+
+                        li
+                            h5
+                                i.fa.fa-circle.m-r-5(style="color: #b4becb;")
+                                | ICU
+
+                    #morris-area-chart1(style="height: 370px;")
+
+            .col-md-6.col-lg-6.col-sm-12.col-xs-12
+                .white-box
+                    h3.box-title Hospital Earning
+
+                    ul.list-inline.text-center
+                        li
+                            h5
+                                i.fa.fa-circle.m-r-5(style="color: #00bfc7;")
+                                | OPD
+
+                        li
+                            h5
+                                i.fa.fa-circle.m-r-5(style="color: #b4becb;")
+                                | ICU
+
+                    #morris-area-chart2(style="height: 370px;")
+        // row
+        // /row
+        .row
+            .col-sm-6
+                .white-box
+                    h3.box-title.m-b-0 New Patient List
+
+                    p.text-muted this is the sample data here for crm
+
+                    .table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th #
+
+                                    th First Name
+
+                                    th Last Name
+
+                                    th Username
+
+                                    th Diseases
+
+                            tbody
+                                tr
+                                    td 1
+
+                                    td Deshmukh
+
+                                    td Prohaska
+
+                                    td @Genelia
+
+                                    td
+                                        span.label.label-danger Fever
+
+                                tr
+                                    td 2
+
+                                    td Deshmukh
+
+                                    td Gaylord
+
+                                    td @Ritesh
+
+                                    td
+                                        span.label.label-info Cancer
+
+                                tr
+                                    td 3
+
+                                    td Sanghani
+
+                                    td Gusikowski
+
+                                    td @Govinda
+
+                                    td
+                                        span.label.label-warning Lakva
+
+                                tr
+                                    td 4
+
+                                    td Roshan
+
+                                    td Rogahn
+
+                                    td @Hritik
+
+                                    td
+                                        span.label.label-success Dental
+
+                                tr
+                                    td 5
+
+                                    td Joshi
+
+                                    td Hickle
+
+                                    td @Maruti
+
+                                    td
+                                        span.label.label-info Cancer
+
+                                tr
+                                    td 6
+
+                                    td Nigam
+
+                                    td Eichmann
+
+                                    td @Sonu
+
+                                    td
+                                        span.label.label-success Dental
+
+            .col-sm-6
+                .white-box
+                    h3.box-title.m-b-0 Laboratory Test
+
+                    p.text-muted this is the sample data here for crm
+
+                    .table-responsive
+                        table.table.table-hover
+                            thead
+                                tr
+                                    th #
+
+                                    th Name
+
+                                    th ECG
+
+                                    th Result
+
+                            tbody
+                                tr
+                                    td 1
+
+                                    td Genelia Deshmukh
+
+                                    td
+                                        span.peity-line(data-width="120", data-peity='{ "fill": ["#01c0c8"], "stroke":["#01c0c8"]}', data-height="40") 0,-3,-2,-4,-5,-4,-3,-2,-5,-1
+
+                                    td
+                                        span.text-danger.text-semibold
+                                            i.fa.fa-level-down(aria-hidden="true")
+                                            |  28.76%
+
+                                tr
+                                    td 2
+
+                                    td Ajay Devgan
+
+                                    td
+                                        span.peity-line(data-width="120", data-peity='{ "fill": ["#01c0c8"], "stroke":["#01c0c8"]}', data-height="40") 0,-1,-1,-2,-3,-1,-2,-3,-1,-2
+
+                                    td
+                                        span.text-warning.text-semibold
+                                            i.fa.fa-level-down(aria-hidden="true")
+                                            |  8.55%
+
+                                tr
+                                    td 3
+
+                                    td Hrithik Roshan
+
+                                    td
+                                        span.peity-line(data-width="120", data-peity='{ "fill": ["#01c0c8"], "stroke":["#01c0c8"]}', data-height="40") 0,3,6,1,2,4,6,3,2,1
+
+                                    td
+                                        span.text-success.text-semibold
+                                            i.fa.fa-level-up(aria-hidden="true")
+                                            |  58.56%
+
+                                tr
+                                    td 4
+
+                                    td Steve Gection
+
+                                    td
+                                        span.peity-line(data-width="120", data-peity='{ "fill": ["#01c0c8"], "stroke":["#01c0c8"]}', data-height="40") 0,3,6,4,5,4,7,3,4,2
+
+                                    td
+                                        span.text-info.text-semibold
+                                            i.fa.fa-level-up(aria-hidden="true")
+                                            |  35.76%
+        // /.row

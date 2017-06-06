@@ -22,4 +22,24 @@ https://tommy770221.com/cbhJs/ <br>
 可以監看 自製節點  172.104.73.26:8541上面的合約狀態  <br>
 [節點建立方法](https://medium.com/taipei-ethereum-meetup/%E4%BD%BF%E7%94%A8parity%E5%BB%BA%E7%AB%8Bproof-of-authority-poa-ethereum-chain-c5c1cdd0f21a) <br>
 
+
+用ETH 的pub 跟 private 作加解密
+https://github.com/bitchan/eccrypto/tree/v1.0.3 
+https://github.com/cryptocoinjs/secp256k1-node/tree/15e14632eabfa54248af97f3ff7a9dcf96f67271#windows
+
+'''
+
+'''
+
+將普通json array資料倒進mongoDb <br>
+mongoimport --db chatterbot-database --collection hospitalProfile --file I:\醫療相關資料\crawlerGeoData\list.txt --jsonArray
+
+db.getCollection('hospitalProfile').createIndex( { "location.coordinates" : "2d"});
     
+db.runCommand( { geoNear: "hospitalProfile",
+                 near: [ 121.48, 24.99 ],
+                 spherical: true
+               }  )
+               
+db.hospitalProfile.find( { "location": { $geoWithin: { $centerSphere: [ [ -74, 40.74 ] ,
+                                                     100 / 3963.2 ] } } } )

@@ -1,0 +1,18 @@
+//
+   Created by Tommy on 2017/6/6.
+doctype html
+html
+    head
+        include header.jade
+      body
+           .preloader
+               .cssload-speeding-wheel
+           #wrapper
+              include navigation.jade
+              include left-navigation.jade
+
+              #page-wrapper
+                  block content
+                include footer.jade
+
+           include js.jade
