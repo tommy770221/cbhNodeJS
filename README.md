@@ -6,7 +6,9 @@ ETH Blockchain Oracle  <br>
 mysql 5.16      <br>
 [mongodb 3.0](https://www.mongodb.org/dl/win32/x86_64-2008plus-ssl?_ga=2.255581000.1193620782.1496321487-1434952109.1496242421) <br>
 [robomongo 1.0](https://robomongo.org/download) <br>
-
+版型使用  </br>
+http://eliteadmin.themedesigner.in/demos/eliteadmin-hospital/index.html
+需要 license (請自行購買) </br>
 先把npm_module init  :   
 執行: npm install <br>
 執行: npm run start
@@ -30,6 +32,8 @@ https://github.com/cryptocoinjs/secp256k1-node/tree/15e14632eabfa54248af97f3ff7a
 '''
 
 '''
+
+
 
 將普通json array資料倒進mongoDb <br>
 mongoimport --db chatterbot-database --collection hospitalProfile --file I:\醫療相關資料\crawlerGeoData\list.txt --jsonArray
