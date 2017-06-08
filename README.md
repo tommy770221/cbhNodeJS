@@ -9,6 +9,7 @@ mysql 5.16      <br>
 版型使用  </br>
 http://eliteadmin.themedesigner.in/demos/eliteadmin-hospital/index.html
 需要 license (請自行購買) </br>
+npm install --global windows-build-tools <br>
 先把npm_module init  :   
 執行: npm install <br>
 執行: npm run start

@@ -6,9 +6,10 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "async": "2.4.1",
     "body-parser": "~1.17.1",
     "botly": "1.4.1",
-    "collections": "5.0.6",
+    "collections": "^5.0.6",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "eccrypto": "^1.0.3",
@@ -33,7 +34,7 @@
     "sequelize-cli": "2.7.0",
     "serve-favicon": "~2.4.2",
     "utf-8-validate": "^3.0.2",
-    "web3": "0.17.0-alpha",
-    "validator":"7.0.0"
+    "validator": "^7.0.0",
+    "web3": "0.17.0-alpha"
   }
 }
