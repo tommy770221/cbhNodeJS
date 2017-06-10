@@ -22,6 +22,7 @@ var disease = require('./routes/disease.js');
 var hospitalInfo = require('./routes/hospitalInfo.js');
 var lineBot = require('./routes/lineBot.js');
 var botly = require('./routes/fbBot.js');
+var doctors = require('./routes/doctors');
 
 var app = express();
 
@@ -58,6 +59,7 @@ app.use(baseDir+'/disease', disease);
 app.use(baseDir+'/hospitalInfo', hospitalInfo);
 app.use(baseDir+'/line', lineBot);
 app.use(baseDir+'/fb/webhook', botly.router());
+app.use(baseDir+'/doctors', doctors);
 
 
 app.post('/:urlparam', function(req, res) {
