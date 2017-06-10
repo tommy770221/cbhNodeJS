@@ -1,0 +1,63 @@
+extends ../adminlte/base
+block content
+    section.content-header
+        h1
+            | 病歷資料
+
+    section.content
+        .row
+            .col-md-4.col-xs-12
+                .box
+                    .box-header.with-border
+                        .row
+                            .col-md-12
+                                img(width='100%', src='http://eliteadmin.themedesigner.in/demos/plugins/images/big/img2.jpg')
+                    .box-body
+                        .row.text-center.m-t-10
+                            .col-md-6.b-r
+                                strong 姓名
+                                p #{data.userName}
+                            .col-md-6
+                                strong 醫師
+                                p #{data.doctor}
+                        hr
+                        .row.text-center.m-t-10
+                            .col-md-12.b-r
+                                strong Line ID
+                                p #{data.lineId}
+                        hr
+                        .row.text-center.m-t-10
+                            .col-md-12
+                                strong Address
+                                p
+                                    | E104, Dharti-2, Chandlodia Ahmedabad
+                                    br
+                                    |  Gujarat, India.
+            .col-md-8.col-xs-12
+                .box
+                    .box-body
+                        .row
+                            .col-md-3.col-xs-6.b-r
+                                strong 姓名
+                                br
+                                p.text-muted #{data.userName}
+                            .col-md-3.col-xs-6.b-r
+                                strong 電話
+                                br
+                                p.text-muted (123) 456 7890
+                            .col-md-3.col-xs-6.b-r
+                                strong Email
+                                br
+                                p.text-muted john@admin.com
+                            .col-md-3.col-xs-6
+                                strong 病歷
+                                br
+                                p.text-muted Fever
+                        hr
+                        p.m-t-30
+                            | Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+                        p
+                            | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries
+                        p
+                            | It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
