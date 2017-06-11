@@ -1,0 +1,50 @@
+//
+   Created by Karen on 2017/6/11.
+extends ../adminlte/base
+block content
+    section.content-header
+        h1 Comment #{doctor.name}
+        ol.breadcrumb
+            li
+                a(href=baseDir + '/doctor')
+                    i.fa.fa-user
+                    | Doctors
+            li
+                a(href=baseDir + '/comment/#{doctor_id}')
+                    i.fa.fa-commenting
+                    | Comments of #{doctor.name}
+            li.active Create comment
+    section.content
+        .box
+            .box-body
+                form(role='form',method='post' action=baseDir+'/comment/add')
+                    .row
+                        .col-xs-6
+                            .box-body
+                                - if (messages.msg_error)
+                                    .alert.alert-danger.alert-dismissable
+                                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                                            | ×
+                                        h4
+                                            i.icon.fa.fa-ban
+                                            | Alert!
+                                        | !{messages.msg_error}
+                                .form-group
+                                    label
+                                        | Name
+                                    input(type='text',name='name',placeholder='Please enter your name', autofocus).form-control
+                                .form-group
+                                    label
+                                        | Comment
+                                    textarea(name='comment',placeholder='Please leave your comment').form-control
+                                .form-group
+                                    input(type='hidden',name='doctor_id',value='#{doctor_id}').form-control
+                                .form-group
+                                    label
+                                        | Rating
+                                    input(type='number',name='rating',placeholder='Enter 1~5', min='1', max='5').form-control
+                            .box-footer
+                                button(type='submit').btn.btn-primary
+                                    | Submit
+                                a(href=baseDir+'/comment/#{doctor_id}').btn.btn-primary.pull-right
+                                    | Back

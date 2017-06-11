@@ -1,0 +1,16 @@
+extends ../adminlte/base
+block content
+    section.content-header
+        h1
+            | 病人清單
+    section.content
+        .row
+        for patient, index in data
+            .col-md-2.col-xs-12
+                .box
+                    .box-body
+                        a(href=baseDir + '/hospitalRegisteredRecord/#{patient.id}')
+                            .row
+                                .col-md-12.text-center
+                                    img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/women/#{patient.id + 50}.jpg', alt='User profile picture')
+                                    h3.profile-username #{patient.userName}

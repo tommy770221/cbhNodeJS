@@ -11,7 +11,10 @@ if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
                         |  Previous
             if pages
                 each page in pages
-                    a.btn.btn-default(href=page.url)= page.number
+                    if page.number == currentPage
+                        a.btn.btn-default.bg-gray-active(href=page.url)= page.number
+                    else
+                        a.btn.btn-default(href=page.url)= page.number
             if paginate.hasNextPages(pageCount)
                 li.next
                     a(href=paginate.href()).next

@@ -169,6 +169,7 @@ router.get('/eth', function(req, res, next) {
       "type": "event"
     }
   ];
+  
   var watchAddr="0x9796d21ec196767b05bf1503962AE11394FC3299";
   var MyContract = web3.eth.contract(abi);
 

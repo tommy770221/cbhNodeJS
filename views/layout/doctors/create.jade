@@ -1,0 +1,42 @@
+//
+   Created by Karen on 2017/6/11.
+extends ../adminlte/base
+block content
+    section.content-header
+        h1
+            | Add doctor
+        ol.breadcrumb
+            li
+                a(href=baseDir + '/doctor')
+                    i.fa.fa-user
+                    | Doctors
+            li.active Add doctor
+    section.content
+        .box
+            .box-body
+                form(role='form',method='post' action=baseDir+'/doctor/add')
+                    .row
+
+                        .col-xs-6
+                            .box-body
+                                - if (messages.msg_error)
+                                    .alert.alert-danger.alert-dismissable
+                                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                                            | ×
+                                        h4
+                                            i.icon.fa.fa-ban
+                                            | Alert!
+                                        | !{messages.msg_error}
+                                .form-group
+                                    label
+                                        | Name
+                                    input(type='text',name='name',placeholder="Please enter the doctor's name", autofocus).form-control
+                                .form-group
+                                    label
+                                        | Description
+                                    input(type='text',name='description',placeholder="Please enter the doctor's description").form-control
+                            .box-footer
+                                button(type='submit').btn.btn-primary
+                                    | Submit
+                                a(href=baseDir+'/doctor').btn.btn-primary.pull-right
+                                    | Back
