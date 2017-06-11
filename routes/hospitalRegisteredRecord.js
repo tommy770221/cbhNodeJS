@@ -4,7 +4,7 @@ var models = require('../models/index');
 
 router.get('/', function(req, res, next) {
     const id = req.query.id;
-    models.HospitalRegisteredRecord.findById(1).then(function(response) {
+    models.HospitalRegisteredRecord.findById(id).then(function(response) {
         console.log(response);
         res.render('layout/hospital/record', {data: response});
     });
