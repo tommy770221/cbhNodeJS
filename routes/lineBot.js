@@ -9,11 +9,11 @@ var  Set = require("collections/set");
 var models = require('../models/index.js');
 var async = require("async");
 nodejieba.load({
-    dict: '../userDicTraditional/jieba.dict.utf8',
-    hmmDict: '../userDicTraditional/hmm_model.utf8',
-    userDict: '../userDicTraditional/user.dict.utf8',
-    idfDict: '../userDicTraditional/idf.utf8',
-    stopWordDict: '../userDicTraditional/stop_words.utf8'
+    dict: './userDicTraditional/jieba.dict.utf8',
+    hmmDict: './userDicTraditional/hmm_model.utf8',
+    userDict: './userDicTraditional/user.dict.utf8',
+    idfDict: './userDicTraditional/idf.utf8',
+    stopWordDict: './userDicTraditional/stop_words.utf8'
 });
 var bot = linebot({
     channelId:  '1502550438',
@@ -110,7 +110,7 @@ bot.on('message', function (event) {
                             console.log("123")
                         }, function(err,s){
                             console.log("err is:" + err);
-                            console.log(s)
+                            console.log(s);
                         });
 
                     }

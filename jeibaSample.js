@@ -45,7 +45,7 @@ async.eachSeries(result,function (itemRe,callback) {
     }).catch(function (err) {
         // handle error;
         console.log("proj error : "+ err);
-    });;
+    });
     console.log("123")
 }, function(err,s){
     console.log("err is:" + err);

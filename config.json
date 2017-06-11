@@ -3,7 +3,7 @@
     "username": "root",
     "password": "root",
     "database": "chatbottest",
-    "host": "localhost",
+    "host": "tommy770221.com",
     "dialect": "mysql",
     "define": { "timestamps": false }
 

@@ -22,6 +22,8 @@ router.get('/eth', function(req, res, next) {
 
   web3.setProvider(new web3.providers.HttpProvider('http://172.104.73.26:8541'));
 
+  console.log(web3.isConnected());
+
   var abi=[
     {
       "constant": false,
@@ -166,11 +168,23 @@ router.get('/eth', function(req, res, next) {
       "type": "event"
     }
   ];
-  var watchAddr="0xbFdC37E0AA8AdAF717CE1c8403a5F80029DbFdc2";
+  var watchAddr="0x9796d21ec196767b05bf1503962AE11394FC3299";
   var MyContract = web3.eth.contract(abi);
   var myContractInstance = MyContract.at(watchAddr);
+  //var event = myContractInstance.AuctionEnded({valueA: 23});
+  var state = web3.eth.getStorageAt("0x9796d21ec196767b05bf1503962AE11394FC3299", 0);
+  console.log(state);
+
+  var myEvent = myContractInstance.HighestBidIncreased({}, {fromBlock: 0, toBlock: 'latest'});
+  myEvent.watch(function(error, result){
+      console.log(result);
+      console.log("error"+ error);
+  });
 
   var events = myContractInstance.allEvents(watchAddr);
+
+
+
 
 // watch for changes
   events.watch(function (error, event) {
@@ -178,6 +192,7 @@ router.get('/eth', function(req, res, next) {
       console.log("event start : ");
       console.log(event);
     }
+    console.log("err : "+ error);
 
   });
 
@@ -187,7 +202,7 @@ router.get('/eth', function(req, res, next) {
       console.log("log start : ");
       console.log(log);
     }
-
+    console.log("err : "+ error);
   });
 
 

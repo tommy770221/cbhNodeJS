@@ -9,7 +9,7 @@ var options = {
    user: 'root',
    pass: 'root'
 }
-mongoose.connect('mongodb://root:root@127.0.0.1/chatterbot-database');
+mongoose.connect('mongodb://root:root@tommy770221.com/chatterbot-database');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
