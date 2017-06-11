@@ -39,11 +39,13 @@ block content
                             img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/men/#{doctor.id}.jpg', alt='User profile picture')
                         h3.profile-username.text-center #{doctor.name}
                         p.text-muted.text-center #{doctor.description}
-                        .text-center
-                            - for (var i=0; i<averageRating; i++) {
-                                i.fa.fa-star(style='color: #f39c12')
-                            - }
-
+                        ul.list-group.list-group-unbordered
+                            li.list-group-item
+                                b Rating
+                                a.pull-right
+                                    - for (var i=0; i<averageRating; i++) {
+                                    i.fa.fa-star(style='color: #d33724')
+                                    - }
             .col-md-9
                 .box.box-primary
                     .box-body
