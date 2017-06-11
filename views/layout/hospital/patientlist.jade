@@ -12,5 +12,9 @@ block content
                         a(href=baseDir + '/hospitalRegisteredRecord/#{patient.id}')
                             .row
                                 .col-md-12.text-center
-                                    img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/women/#{patient.id + 50}.jpg', alt='User profile picture')
-                                    h3.profile-username #{patient.userName}
+                                    if index % 2 == 0
+                                        img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/women/#{patient.id + 50}.jpg', alt='User profile picture')
+                                    else
+                                        img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/men/#{patient.id + 50}.jpg', alt='User profile picture')
+                                    h3.profile-username #{patient.userName || 'Patient Name'}
+
