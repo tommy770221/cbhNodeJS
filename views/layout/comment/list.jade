@@ -4,7 +4,13 @@
 extends ../adminlte/base
 block content
     section.content-header
-        h1 #{doctor.name}的評價
+        h1 Comments of #{doctor.name}
+        ol.breadcrumb
+            li
+                a(href=baseDir + '/doctor')
+                    i.fa.fa-user
+                    | Doctors
+            li.active Comments of #{doctor.name}
     section.content
         .row
             - if(messages.msg_info)
@@ -33,6 +39,13 @@ block content
                             img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/men/#{doctor.id}.jpg', alt='User profile picture')
                         h3.profile-username.text-center #{doctor.name}
                         p.text-muted.text-center #{doctor.description}
+                        ul.list-group.list-group-unbordered
+                            li.list-group-item
+                                b Rating
+                                a.pull-right
+                                    - for (var i=0; i<averageRating; i++) {
+                                    i.fa.fa-star(style='color: #d33724')
+                                    - }
             .col-md-9
                 .box.box-primary
                     .box-body
@@ -47,7 +60,7 @@ block content
                                     .user-block
                                         if index % 2 == 0
                                             img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/women/#{Comment.id + 50}.jpg', alt='User profile picture')
-                                        if index % 2 != 0
+                                        else
                                             img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/men/#{Comment.id + 50}.jpg', alt='User profile picture')
                                         span.username #{Comment.name}
                                             span(style='margin-left: 8px;')

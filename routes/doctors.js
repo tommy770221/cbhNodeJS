@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
             }).then(function(doctor) {
             var pageCount=Math.floor(count/12)+1;
             var pages = paginate.getArrayPages(req)(10, pageCount, req.query.page);
-            res.render('layout/doctors/list',{title:"Doctor",data:doctor, pages: pages,pageCount:pageCount});
+            res.render('layout/doctors/list',{title:"Doctor",data:doctor, pages: pages,pageCount:pageCount, currentPage: req.query.page});
         }).catch(function (err) {
             // handle error;
             if(err){

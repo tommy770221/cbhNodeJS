@@ -17,7 +17,10 @@ router.get('/:id', function(req, res, next) {
                 doctor_id: req.params.id
             },
             limit: 5,
-            offset: (req.query.page-1)*5
+            offset: (req.query.page-1)*5,
+            order: [
+                ['create_time', 'DESC']
+            ]
         }).then(function (comment) {
             models.Doctor.findOne({
                 where: {
@@ -26,12 +29,19 @@ router.get('/:id', function(req, res, next) {
             }).then(function (doctor) {
                 var pageCount = Math.floor(count / 5) + 1;
                 var pages = paginate.getArrayPages(req)(10, pageCount, req.query.page);
+                var totalRating = 0;
+                for (var key in comment) {
+                    totalRating += comment[key].rating;
+                }
+                console.log(totalRating)
                 res.render('layout/comment/list', {
                     title: "Comment",
                     data: comment,
                     doctor: doctor,
                     pages: pages,
-                    pageCount: pageCount
+                    pageCount: pageCount,
+                    currentPage: req.query.page,
+                    averageRating: Math.floor(totalRating / count)
                 });
             }).catch(function (err) {
                 // handle error;
@@ -98,11 +108,25 @@ router.get('/add/:id', function(req, res, next) {
         res.redirect(baseDir + '/doctor');
         return;
     }
-    res.render( 'layout/comment/create',
-        {
-            title: 'Add New Comment',
-            doctor_id: req.params.id
+    models.Doctor.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (doctor) {
+        res.render( 'layout/comment/create',
+            {
+                title: 'Add New Comment',
+                doctor_id: req.params.id,
+                doctor: doctor
         });
+    }).catch(function (err) {
+        // handle error;
+        if (err) {
+            var errornya = ("Error Selecting : %s ", err );
+            console.log("errornya : " + errornya)
+            req.flash('msg_error', errornya);
+        }
+    });
 });
 
 module.exports = router;
