@@ -30,8 +30,10 @@ router.get('/:id', function(req, res, next) {
                 var pageCount = Math.floor(count / 5) + 1;
                 var pages = paginate.getArrayPages(req)(10, pageCount, req.query.page);
                 var totalRating = 0;
+                var commentCnt = 0;
                 for (var key in comment) {
                     totalRating += comment[key].rating;
+                    commentCnt ++;
                 }
                 console.log(totalRating)
                 res.render('layout/comment/list', {
@@ -41,7 +43,7 @@ router.get('/:id', function(req, res, next) {
                     pages: pages,
                     pageCount: pageCount,
                     currentPage: req.query.page,
-                    averageRating: Math.floor(totalRating / count)
+                    averageRating: Math.floor(totalRating / commentCnt)
                 });
             }).catch(function (err) {
                 // handle error;
