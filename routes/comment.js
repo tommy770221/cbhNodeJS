@@ -31,7 +31,8 @@ router.get('/:id', function(req, res, next) {
                     data: comment,
                     doctor: doctor,
                     pages: pages,
-                    pageCount: pageCount
+                    pageCount: pageCount,
+                    currentPage: req.query.page
                 });
             }).catch(function (err) {
                 // handle error;
@@ -98,11 +99,25 @@ router.get('/add/:id', function(req, res, next) {
         res.redirect(baseDir + '/doctor');
         return;
     }
-    res.render( 'layout/comment/create',
-        {
-            title: 'Add New Comment',
-            doctor_id: req.params.id
+    models.Doctor.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (doctor) {
+        res.render( 'layout/comment/create',
+            {
+                title: 'Add New Comment',
+                doctor_id: req.params.id,
+                doctor: doctor
         });
+    }).catch(function (err) {
+        // handle error;
+        if (err) {
+            var errornya = ("Error Selecting : %s ", err );
+            console.log("errornya : " + errornya)
+            req.flash('msg_error', errornya);
+        }
+    });
 });
 
 module.exports = router;

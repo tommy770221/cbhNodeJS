@@ -4,7 +4,7 @@
 extends ../adminlte/base
 block content
     section.content-header
-        h1 醫生清單
+        h1 Doctors
     section.content
         .box
             .box-body
@@ -24,7 +24,7 @@ block content
                             i.icon.fa.fa-ban
                             | Alert!
                         | !{messages.msg_error}
-                .row(style='display:none')
+                .row(style='display:none; margin-left: 0px; margin-bottom: 10px;')
                     a(href=baseDir + '/doctor/add').pull-left.btn.btn-primary
                         i.fa.fa-plus Add Doctor
                 .row
@@ -36,7 +36,7 @@ block content
                                 a(href=baseDir + '/comment/#{Doctor.id}', style='display: block; width: 100px; margin: 0 auto;')
                                     if index % 3 == 0
                                         img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/women/#{Doctor.id}.jpg', alt='User profile picture')
-                                    if index % 3 != 0
+                                    else
                                         img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/men/#{Doctor.id}.jpg', alt='User profile picture')
                                 h3.profile-username.text-center #{Doctor.name}
                                 p.text-muted.text-center #{Doctor.description}

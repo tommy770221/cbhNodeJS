@@ -4,23 +4,15 @@ extends ../adminlte/base
 block content
     section.content-header
         h1
-            | Blank Page
-            small it all starts here
+            | Add doctor
         ol.breadcrumb
             li
-                a(href='#')
-                    i.fa.fa-dashboard
-                    | Level
-            li.active Here
+                a(href=baseDir + '/doctor')
+                    i.fa.fa-user
+                    | Doctors
+            li.active Add doctor
     section.content
         .box
-            .box-header.with-border
-                h3.box-title
-                    | Doctor
-                .box-tools.pull-right
-                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
-                        i.fa.fa-minus
-
             .box-body
                 form(role='form',method='post' action=baseDir+'/doctor/add')
                     .row
@@ -37,12 +29,12 @@ block content
                                         | !{messages.msg_error}
                                 .form-group
                                     label
-                                        | 醫生姓名
-                                    input(type='text',name='name',placeholder='Enter 張銜淳', autofocus).form-control
+                                        | Name
+                                    input(type='text',name='name',placeholder="Please enter the doctor's name", autofocus).form-control
                                 .form-group
                                     label
-                                        | 描述
-                                    input(type='text',name='description',placeholder='Enter 天大地大大帝大').form-control
+                                        | Description
+                                    input(type='text',name='description',placeholder="Please enter the doctor's description").form-control
                             .box-footer
                                 button(type='submit').btn.btn-primary
                                     | Submit

@@ -3,24 +3,19 @@
 extends ../adminlte/base
 block content
     section.content-header
-        h1
-            | Blank Page
-            small it all starts here
+        h1 Comment #{doctor.name}
         ol.breadcrumb
             li
-                a(href='#')
-                    i.fa.fa-dashboard
-                    | Level
-            li.active Here
+                a(href=baseDir + '/doctor')
+                    i.fa.fa-user
+                    | Doctors
+            li
+                a(href=baseDir + '/comment/#{doctor_id}')
+                    i.fa.fa-commenting
+                    | Comments of #{doctor.name}
+            li.active Create comment
     section.content
         .box
-            .box-header.with-border
-                h3.box-title
-                    | Comment
-                .box-tools.pull-right
-                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
-                        i.fa.fa-minus
-
             .box-body
                 form(role='form',method='post' action=baseDir+'/comment/add')
                     .row
@@ -36,17 +31,17 @@ block content
                                         | !{messages.msg_error}
                                 .form-group
                                     label
-                                        | 姓名
-                                    input(type='text',name='name',placeholder='Enter 張銜淳', autofocus).form-control
+                                        | Name
+                                    input(type='text',name='name',placeholder='Please enter your name', autofocus).form-control
                                 .form-group
                                     label
-                                        | 評論
-                                    textarea(name='comment',placeholder='Enter 天大地大大帝大').form-control
+                                        | Comment
+                                    textarea(name='comment',placeholder='Please leave your comment').form-control
                                 .form-group
                                     input(type='hidden',name='doctor_id',value='#{doctor_id}').form-control
                                 .form-group
                                     label
-                                        | 評分
+                                        | Rating
                                     input(type='number',name='rating',placeholder='Enter 1~5', min='1', max='5').form-control
                             .box-footer
                                 button(type='submit').btn.btn-primary
