@@ -27,14 +27,14 @@ router.get('/:id', function(req, res, next) {
                     id: req.params.id
                 }
             }).then(function (doctor) {
-                var pageCount = Math.floor(count / 5) + 1;
-                var pages = paginate.getArrayPages(req)(10, pageCount, req.query.page);
                 var totalRating = 0;
                 var commentCnt = 0;
                 for (var key in comment) {
                     totalRating += comment[key].rating;
                     commentCnt ++;
                 }
+                var pageCount = Math.floor(commentCnt / 5) + 1;
+                var pages = paginate.getArrayPages(req)(10, pageCount, req.query.page);
                 console.log(totalRating)
                 res.render('layout/comment/list', {
                     title: "Comment",
