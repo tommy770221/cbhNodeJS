@@ -1,5 +1,5 @@
 /**
- * Created by Tommy on 2017/6/2.
+ * Created by Tommy on 2017/6/11.
  */
 var crypto = require("crypto");
 var eccrypto = require("eccrypto");
@@ -12,7 +12,7 @@ var publicKeyB = eccrypto.getPublic(privateKeyB);
 console.log(privateKeyA.toString("hex"));
 console.log(publicKeyA.toString("hex"));
 // Encrypting the message for B.
-eccrypto.encrypt(publicKeyB, Buffer("你好嗎")).then(function(encrypted) {
+eccrypto.encrypt(publicKeyB, Buffer("感冒")).then(function(encrypted) {
     // B decrypting the message.
     console.log(encrypted.ciphertext);
     eccrypto.decrypt(privateKeyB, encrypted).then(function(plaintext) {

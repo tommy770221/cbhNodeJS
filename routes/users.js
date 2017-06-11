@@ -24,6 +24,7 @@ router.get('/eth', function(req, res, next) {
 
   console.log(web3.isConnected());
 
+
   var abi=[
     {
       "constant": false,
@@ -170,6 +171,7 @@ router.get('/eth', function(req, res, next) {
   ];
   var watchAddr="0x9796d21ec196767b05bf1503962AE11394FC3299";
   var MyContract = web3.eth.contract(abi);
+
   var myContractInstance = MyContract.at(watchAddr);
   //var event = myContractInstance.AuctionEnded({valueA: 23});
   var state = web3.eth.getStorageAt("0x9796d21ec196767b05bf1503962AE11394FC3299", 0);
@@ -211,5 +213,45 @@ router.get('/eth', function(req, res, next) {
   //myEvent.stopWatching();
   res.send('respond with a resource');
 });
+
+function getTransactionsByAccount(myaccount, startBlockNumber, endBlockNumber) {
+  if (endBlockNumber == null) {
+    endBlockNumber = eth.blockNumber;
+    console.log("Using endBlockNumber: " + endBlockNumber);
+  }
+  if (startBlockNumber == null) {
+    startBlockNumber = endBlockNumber - 1000;
+    console.log("Using startBlockNumber: " + startBlockNumber);
+  }
+  console.log("Searching for transactions to/from account \"" + myaccount + "\" within blocks "  + startBlockNumber + " and " + endBlockNumber);
+
+  for (var i = startBlockNumber; i <= endBlockNumber; i++) {
+    if (i % 1000 == 0) {
+      console.log("Searching block " + i);
+    }
+    var block = eth.getBlock(i, true);
+    if (block != null && block.transactions != null) {
+      block.transactions.forEach( function(e) {
+        if (myaccount == "*" || myaccount == e.from || myaccount == e.to) {
+          console.log("  tx hash          : " + e.hash + "\n"
+              + "   nonce           : " + e.nonce + "\n"
+              + "   blockHash       : " + e.blockHash + "\n"
+              + "   blockNumber     : " + e.blockNumber + "\n"
+              + "   transactionIndex: " + e.transactionIndex + "\n"
+              + "   from            : " + e.from + "\n"
+              + "   to              : " + e.to + "\n"
+              + "   value           : " + e.value + "\n"
+              + "   time            : " + block.timestamp + " " + new Date(block.timestamp * 1000).toGMTString() + "\n"
+              + "   gasPrice        : " + e.gasPrice + "\n"
+              + "   gas             : " + e.gas + "\n"
+              + "   input           : " + e.input);
+        }
+      })
+    }
+  }
+}
+
+
+
 
 module.exports = router;
