@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/add', function(req, res, next) {
-    req.assert('doc_category', 'Please fill the name').notEmpty();
+    req.assert('doc_category', 'Please fill in the name').notEmpty();
     var errors = req.validationErrors();
     if (!errors) {
 
@@ -41,7 +41,7 @@ router.post('/add', function(req, res, next) {
                 category: req.body.category,
                 big_category: req.body.big_category,
                 symptom : req.body.symptom
-            }
+            };
             // chain all your queries here. make sure you return them.
             return models.Disease.create(disease, {transaction: t}).then(function (disease) {
                 console.log(disease);

@@ -4,4 +4,41 @@
 extends ../adminlte/base
 block content
     section.content-header
-        h1
+        h1 醫生清單
+    section.content
+        .box
+            .box-body
+                - if(messages.msg_info)
+                    .alert.alert-success.alert-dismissable
+                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                            | ×
+                        h4
+                            i.icon.fa.fa-check
+                            | Success!
+                        | !{messages.msg_info}
+                - if(messages.msg_error)
+                    .alert.alert-danger.alert-dismissable
+                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                            | ×
+                        h4
+                            i.icon.fa.fa-ban
+                            | Alert!
+                        | !{messages.msg_error}
+                .row(style='display:none')
+                    a(href=baseDir + '/doctor/add').pull-left.btn.btn-primary
+                        i.fa.fa-plus Add Doctor
+                .row
+                    if messages.msg_error
+                        | !{messages.msg_error}
+                    else
+                        for Doctor, index in data
+                            .col-md-3.col-sm-6
+                                a(href=baseDir + '/comment/#{Doctor.id}', style='display: block; width: 100px; margin: 0 auto;')
+                                    if index % 3 == 0
+                                        img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/women/#{Doctor.id}.jpg', alt='User profile picture')
+                                    if index % 3 != 0
+                                        img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/men/#{Doctor.id}.jpg', alt='User profile picture')
+                                h3.profile-username.text-center #{Doctor.name}
+                                p.text-muted.text-center #{Doctor.description}
+                .row
+                    include ../_paginate

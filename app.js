@@ -22,7 +22,8 @@ var disease = require('./routes/disease.js');
 var hospitalInfo = require('./routes/hospitalInfo.js');
 var lineBot = require('./routes/lineBot.js');
 var botly = require('./routes/fbBot.js');
-var doctors = require('./routes/doctors');
+var doctor = require('./routes/doctors');
+var comment = require('./routes/comment');
 var personalRecord = require('./routes/personalRecord');
 var hospitalRegisteredRecord = require('./routes/hospitalRegisteredRecord');
 
@@ -61,7 +62,8 @@ app.use(baseDir+'/disease', disease);
 app.use(baseDir+'/hospitalInfo', hospitalInfo);
 app.use(baseDir+'/line', lineBot);
 app.use(baseDir+'/fb/webhook', botly.router());
-app.use(baseDir+'/doctors', doctors);
+app.use(baseDir+'/doctor', doctor);
+app.use(baseDir+'/comment', comment);
 app.use(baseDir+'/personalRecord', personalRecord);
 app.use(baseDir+'/hospitalRegisteredRecord', hospitalRegisteredRecord);
 

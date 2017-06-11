@@ -1,9 +1,11 @@
 //
-   Created by Tommy on 2017/5/29.
+   Created by Karen on 2017/6/11.
 extends ../adminlte/base
 block content
     section.content-header
-        h1 新增醫生
+        h1
+            | Blank Page
+            small it all starts here
         ol.breadcrumb
             li
                 a(href='#')
@@ -14,15 +16,14 @@ block content
         .box
             .box-header.with-border
                 h3.box-title
-                    | Customer
+                    | Comment
                 .box-tools.pull-right
                     button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
                         i.fa.fa-minus
 
             .box-body
-                form(role='form',method='post' action=baseDir+'/disease/add')
+                form(role='form',method='post' action=baseDir+'/comment/add')
                     .row
-
                         .col-xs-6
                             .box-body
                                 - if (messages.msg_error)
@@ -35,22 +36,20 @@ block content
                                         | !{messages.msg_error}
                                 .form-group
                                     label
-                                        | 醫別
-                                    input(type='text',name='doc_category',placeholder='Enter 中西醫', autofocus).form-control
+                                        | 姓名
+                                    input(type='text',name='name',placeholder='Enter 張銜淳', autofocus).form-control
                                 .form-group
                                     label
-                                        | 科別小項
-                                    input(type='text',name='category',placeholder='Enter 科別小項').form-control
+                                        | 評論
+                                    textarea(name='comment',placeholder='Enter 天大地大大帝大').form-control
+                                .form-group
+                                    input(type='hidden',name='doctor_id',value='#{doctor_id}').form-control
                                 .form-group
                                     label
-                                        | 大項分類
-                                    input(type='text',name='big_category',placeholder='Enter 大項分類').form-control
-                                .form-group
-                                    label
-                                        | 症狀
-                                    input(type='text',name='symptom',placeholder='Enter Symptom').form-control
+                                        | 評分
+                                    input(type='number',name='rating',placeholder='Enter 1~5', min='1', max='5').form-control
                             .box-footer
                                 button(type='submit').btn.btn-primary
                                     | Submit
-                                a(href=baseDir+'/disease').btn.btn-primary.pull-right
+                                a(href=baseDir+'/comment/#{doctor_id}').btn.btn-primary.pull-right
                                     | Back

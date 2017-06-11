@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('comment', {
+    return sequelize.define('Comment', {
         id: {
             type: DataTypes.BIGINT,
             allowNull: false,

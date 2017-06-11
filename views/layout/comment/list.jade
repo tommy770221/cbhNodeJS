@@ -1,0 +1,59 @@
+//
+   Created by Karen on 2017/6/11.
+
+extends ../adminlte/base
+block content
+    section.content-header
+        h1 #{doctor.name}的評價
+    section.content
+        .row
+            - if(messages.msg_info)
+                .alert.alert-success.alert-dismissable
+                    button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                        | ×
+                    h4
+                        i.icon.fa.fa-check
+                        | Success!
+                    | !{messages.msg_info}
+            - if(messages.msg_error)
+                .alert.alert-danger.alert-dismissable
+                    button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                        | ×
+                    h4
+                        i.icon.fa.fa-ban
+                        | Alert!
+                    | !{messages.msg_error}
+        .row
+            .col-md-3
+                .box.box-primary
+                    .box-body.box-profile
+                        if (doctor.id - 1) % 3 == 0
+                            img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/women/#{doctor.id}.jpg', alt='User profile picture')
+                        if (doctor.id - 1) % 3 != 0
+                            img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/men/#{doctor.id}.jpg', alt='User profile picture')
+                        h3.profile-username.text-center #{doctor.name}
+                        p.text-muted.text-center #{doctor.description}
+            .col-md-9
+                .box.box-primary
+                    .box-body
+                        .row(style='margin-left: 0px; margin-bottom: 10px;')
+                            a(href=baseDir + '/comment/add/#{doctor.id}').pull-left.btn.btn-primary
+                                i.fa.fa-plus Add Comment
+                        if messages.msg_error
+                            | !{messages.msg_error}
+                        else
+                            for Comment, index in data
+                                .post
+                                    .user-block
+                                        if index % 2 == 0
+                                            img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/women/#{Comment.id + 50}.jpg', alt='User profile picture')
+                                        if index % 2 != 0
+                                            img.profile-user-img.img-responsive.img-circle(src='https://randomuser.me/api/portraits/men/#{Comment.id + 50}.jpg', alt='User profile picture')
+                                        span.username #{Comment.name}
+                                            span(style='margin-left: 8px;')
+                                                - for (var i=0; i<Comment.rating; i++) {
+                                                    i.fa.fa-star(style='color: #f39c12')
+                                                - }
+                                        span.description #{Comment.create_time}
+                                    p(style='white-space: pre') #{Comment.comment}
+                    include ../_paginate
