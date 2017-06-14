@@ -6,6 +6,8 @@ var Web3 = require('web3');
 var web3 = new Web3();
 
 web3.setProvider(new web3.providers.HttpProvider('http://172.104.73.26:8543'));
+web3.personal.unlockAccount("0x006cB2ee626a6b17a9936fD9fe75E999eDeFe3dc", "test");
+
 
 var abi=[
     {
@@ -151,25 +153,60 @@ var abi=[
         "type": "event"
     }
 ];
-var MyContract = web3.eth.contract(abi);
 
-var address="0x8f00578Eef9b1076d82cAcC8b6b523352E974F2C"
+var abiTest=[
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "x",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_x",
+                "type": "uint256"
+            }
+        ],
+        "name": "setX",
+        "outputs": [],
+        "payable": false,
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "payable": false,
+        "type": "constructor"
+    }
+];
+
+var MyContract = web3.eth.contract(abiTest);
+
+var address="0xdF3b82701c8a5F32A94b496e0f29ea6345b22d6c"
 // initiate contract for an address
 var myContractInstance = MyContract.at(address);
 var transactionObject = {
-    data: '',
+    data: '20',
     gasPrice: web3.eth.gasPrice,
-    gas: 5000000,
+    gas: 500000,
     from: web3.eth.accounts[0],
     to:address
 };
 
 //預估需要多少gas
-var result=myContractInstance.withdraw.estimateGas();
+var result=myContractInstance.setX(30);
 console.log(result);
 
 
-var result=myContractInstance.withdraw(transactionObject,function (err,result) {
+var result=myContractInstance.setX(30,transactionObject,function (err,result) {
     console.log(err);
     console.log(result);
 });
