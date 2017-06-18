@@ -48,3 +48,7 @@ db.runCommand( { geoNear: "hospitalProfile",
                
 db.hospitalProfile.find( { "location": { $geoWithin: { $centerSphere: [ [ -74, 40.74 ] ,
                                                      100 / 3963.2 ] } } } )
+                                                     
+                                                     
+下指令 可以得到合約呼叫  transaction評價data 用法                                                    
+node TestWeb3JS.js                                                       
