@@ -3,15 +3,16 @@
  */
 var Web3 = require('web3');
 
-var Wallet = require('ethers-wallet');
 var CryptoJS = require('crypto-js');
 var keythereum = require("keythereum");
+var Tx = require('ethereumjs-tx');
+var _ = require('lodash');
+var SolidityFunction = require('web3/lib/web3/function');
 
 
 var web3 = new Web3();
 
 web3.setProvider(new web3.providers.HttpProvider('http://172.104.73.26:8543'));
-web3.personal.unlockAccount("0x006cB2ee626a6b17a9936fD9fe75E999eDeFe3dc", "test");
 
 
 var abi=[
@@ -38,7 +39,7 @@ var abi=[
         "outputs": [
             {
                 "name": "",
-                "type": "addressTwo"
+                "type": "address"
             }
         ],
         "payable": false,
@@ -77,7 +78,7 @@ var abi=[
         "outputs": [
             {
                 "name": "",
-                "type": "addressTwo"
+                "type": "address"
             }
         ],
         "payable": false,
@@ -117,7 +118,7 @@ var abi=[
             },
             {
                 "name": "_beneficiary",
-                "type": "addressTwo"
+                "type": "address"
             }
         ],
         "payable": false,
@@ -129,7 +130,7 @@ var abi=[
             {
                 "indexed": false,
                 "name": "bidder",
-                "type": "addressTwo"
+                "type": "address"
             },
             {
                 "indexed": false,
@@ -146,7 +147,7 @@ var abi=[
             {
                 "indexed": false,
                 "name": "winner",
-                "type": "addressTwo"
+                "type": "address"
             },
             {
                 "indexed": false,
@@ -211,11 +212,11 @@ var result=myContractInstance.setX;
 console.log(result);
 
 
-var result=myContractInstance.setX(30,transactionObject,function (err,result) {
+/*var result=myContractInstance.setX(30,transactionObject,function (err,result) {
     console.log(err);
     console.log(result);
 });
-console.log(result);
+console.log(result);*/
 
 
 var MyContractTwo = web3.eth.contract(abi);
@@ -231,18 +232,18 @@ var transactionObjectTwo = {
 };
 
 
-var result=myContractInstanceTwo.withdraw(transactionObject,function (err,result) {
+/*var result=myContractInstanceTwo.withdraw(transactionObject,function (err,result) {
     console.log(err);
     console.log(result);
 });
-console.log(result);
+console.log(result);*/
 
 
 //將parity 的錢包 轉成private key
 
 var wallet={
                     address:"006cb2ee626a6b17a9936fd9fe75e999edefe3dc",
-                     Crypto:{
+                    Crypto:{
                                        cipher:"aes-128-ctr",
                                  cipherparams:{
                                                    "iv":"935abaff7f22833f6ea905b7cb99148c"
@@ -266,3 +267,68 @@ var privateKey = keythereum.recover('test', wallet);
 
 console.log(privateKey.toString('hex'));
 
+
+//呼叫自己寫的智能合約
+var walletContractAddress = '0x9796d21ec196767b05bf1503962AE11394FC3299';
+var fromAccount = '0x006cb2ee626a6b17a9936fd9fe75e999edefe3dc';
+var toAccount ='0x00CA8A3D7fE1F96dA2b0f1257f72Bb7b4a80FFCE';
+
+//指定abi的function
+var solidityFunction = new SolidityFunction(0, _.find(abi, { name: 'withdraw' }),'0x006cb2ee626a6b17a9936fd9fe75e999edefe3dc');
+console.log('This shows what toPayload expects as an object');
+console.log(solidityFunction);
+var payloadData = solidityFunction.toPayload([toAccount, 3]).data;
+console.log(payloadData);
+
+gasPrice = web3.eth.gasPrice;
+gasPriceHex = web3.toHex(gasPrice);
+gasLimitHex = web3.toHex(300000);
+
+console.log('Current gasPrice: ' + gasPrice + ' OR ' + gasPriceHex);
+
+var nonce =  web3.eth.getTransactionCount(fromAccount) ;
+var nonceHex = web3.toHex(nonce);
+console.log('nonce (transaction count on fromAccount): ' + nonce + '(' + nonceHex + ')');
+
+var rawTx = {
+    nonce: nonceHex,
+    gasPrice: gasPriceHex,
+    gasLimit: gasLimitHex,
+    to: walletContractAddress,
+    from: fromAccount,
+    value: '0x00',
+    gas: 500000,
+    data: payloadData,
+    chainId: '0x2323'
+};
+
+// Step 5:
+var tx = new Tx(rawTx);
+tx.sign(privateKey);
+console.log(tx);
+console.log(tx.toJSON());
+console.log(tx.data.toString('hex'));
+
+var serializedTx = tx.serialize();
+console.log(serializedTx.toString('hex'));
+if (tx.verifySignature()) {
+    console.log('Signature Checks out!')
+}
+
+
+web3.eth.sendRawTransaction("0x"+serializedTx.toString('hex'), function (err, hash) {
+    if (err) {
+        console.log('Error:');
+        console.log(err);
+    }
+    else {
+        console.log('Transaction receipt hash pending');
+        console.log(hash);
+    }
+});
+/*
+var result=myContractInstanceTwo.withdraw(tx.toSource(),function (err,result) {
+    console.log(err);
+    console.log(result);
+});
+console.log(result);*/
