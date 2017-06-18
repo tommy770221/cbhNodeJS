@@ -8,6 +8,8 @@ var keythereum = require("keythereum");
 var Tx = require('ethereumjs-tx');
 var _ = require('lodash');
 var SolidityFunction = require('web3/lib/web3/function');
+var util = require('ethereumjs-util');
+var encoding = require("encoding");
 
 
 var web3 = new Web3();
@@ -299,6 +301,8 @@ var rawTx = {
     value: '0x00',
     gas: 500000,
     data: payloadData,
+    //自訂的 chainId 正式       0x01
+    //測試的         testnet    0x03
     chainId: '0x2323'
 };
 
@@ -312,7 +316,7 @@ console.log(tx.data.toString('hex'));
 var serializedTx = tx.serialize();
 console.log(serializedTx.toString('hex'));
 if (tx.verifySignature()) {
-    console.log('Signature Checks out!')
+    console.log('Signature Checks out!');
 }
 
 
@@ -332,3 +336,59 @@ var result=myContractInstanceTwo.withdraw(tx.toSource(),function (err,result) {
     console.log(result);
 });
 console.log(result);*/
+
+//產生 pulblickey
+var publicKey = util.bufferToHex(util.privateToPublic(privateKey));
+console.log(publicKey);
+
+
+
+/*   自定義中文評論 , parity 瀏覽器發送的資料不支援中文格式 */
+
+var rawTxTwo = {
+    nonce: nonceHex,
+    gasPrice: gasPriceHex,
+    gasLimit: gasLimitHex,
+    to: toAccount,
+    from: fromAccount,
+    value: '0x15',
+    gas: 500000,
+    input:'這個醫生的評價非常好,每次看病都很有精神',
+    //自訂的 chainId 正式       0x01
+    //測試的         testnet    0x03
+    chainId: '0x2323'
+};
+
+// Step 5:
+var txTwo = new Tx(rawTxTwo);
+txTwo.sign(privateKey);
+console.log(txTwo);
+console.log(txTwo.toJSON());
+console.log(txTwo.data.toString('hex'));
+
+var serializedTxTwo = txTwo.serialize();
+console.log(serializedTxTwo.toString('hex'));
+if (txTwo.verifySignature()) {
+    console.log('Signature Checks out!');
+}
+
+
+web3.eth.sendRawTransaction("0x"+serializedTxTwo.toString('hex'), function (err, hash) {
+    if (err) {
+        console.log('Error:');
+        console.log(err);
+    }
+    else {
+        console.log('Transaction receipt hash pending');
+        console.log(hash);
+        var data=web3.eth.getTransaction(hash);
+        console.log(data);
+//console.log(encoding.convert(web3.toAscii(data.input), 'UTF-8','ASCII').toString());
+        console.log(web3.toUtf8(data.input));var data=web3.eth.getTransaction(hash);
+        console.log(data);
+//console.log(encoding.convert(web3.toAscii(data.input), 'UTF-8','ASCII').toString());
+        console.log(web3.toUtf8(data.input));
+    }
+});
+
+
