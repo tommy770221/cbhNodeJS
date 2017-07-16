@@ -55,4 +55,4 @@ node TestWeb3JS.js
 
 以下為測試的Line 好友 QRcode
 
-<img src="http://qr-official.line.me/L/QC85t_n-_U.png">
+http://qr-official.line.me/L/QC85t_n-_U.png
