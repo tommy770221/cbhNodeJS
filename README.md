@@ -51,4 +51,7 @@ db.hospitalProfile.find( { "location": { $geoWithin: { $centerSphere: [ [ -74, 4
                                                      
                                                      
 下指令 可以得到合約呼叫  transaction評價data 用法                                                    
-node TestWeb3JS.js                                                       
+node TestWeb3JS.js                    
+
+以下為測試的Line 好友 QRcode
+<img src="http://qr-official.line.me/L/QC85t_n-_U.png">
