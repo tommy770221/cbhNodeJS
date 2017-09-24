@@ -2,8 +2,6 @@
  * Created by tommy on 2017/6/12.
  */
 var Web3 = require('web3');
-
-var CryptoJS = require('crypto-js');
 var keythereum = require("keythereum");
 var Tx = require('ethereumjs-tx');
 var _ = require('lodash');
@@ -244,24 +242,24 @@ console.log(result);*/
 //將parity 的錢包 轉成private key
 
 var wallet={
-                    address:"006cb2ee626a6b17a9936fd9fe75e999edefe3dc",
+                    address:"0x00fC42Af85719e6CE855aD5F565F4Ce127f24279",
                     Crypto:{
                                        cipher:"aes-128-ctr",
                                  cipherparams:{
-                                                   "iv":"935abaff7f22833f6ea905b7cb99148c"
+                                                   "iv":"4890b46d779864af016c62a130569018"
                                                 },
-                                 ciphertext:"3b95c16bd592425741c4147928d4719165c96311b027f427d56cd0cc3b999da4",
+                                 ciphertext:"280cab64934f141229d98a02e06850f5fc70d399ac1b1b02cbe047d105de5e69",
                                  kdf:"pbkdf2",
-                                 mac:"8633514b6c902beb5ec13527cc6e5cbdbedee3a155d1d31f5f31bf5978035c38",
+                                 mac:"50f4f1b4d23a8ee7959a04b33816ab41faed667050e372ded60edeba1362b736",
                                  kdfparams:{
                                      c:10240,
                                      dklen:32,
                                      prf:"hmac-sha256",
-                                     salt:"c52703a529447f291b62b54c3d3b49f6a4c191a0ef463bc101a8f97d35de8a24"
+                                     salt:"475fa2c26eb17429057f0fffda22be6a5b56000e3cf6877d55da6a98da2813fb"
                                  }
                      },
 
-                    id:"071c6a91-cdfb-9897-8753-c2f8a045a7db",
+                    id:"07e8e16a-014d-c198-aaf0-458e88b2e8ff",
                     version:3
              };
 
@@ -272,11 +270,11 @@ console.log(privateKey.toString('hex'));
 
 //呼叫自己寫的智能合約
 var walletContractAddress = '0x9796d21ec196767b05bf1503962AE11394FC3299';
-var fromAccount = '0x006cb2ee626a6b17a9936fd9fe75e999edefe3dc';
-var toAccount ='0x00CA8A3D7fE1F96dA2b0f1257f72Bb7b4a80FFCE';
+var fromAccount = '0x00fC42Af85719e6CE855aD5F565F4Ce127f24279';
+var toAccount ='0x0007CD6B9B0B60A99D2af31a43f661483B92Df04';
 
 //指定abi的function
-var solidityFunction = new SolidityFunction(0, _.find(abi, { name: 'withdraw' }),'0x006cb2ee626a6b17a9936fd9fe75e999edefe3dc');
+var solidityFunction = new SolidityFunction(0, _.find(abi, { name: 'withdraw' }),'0x00fC42Af85719e6CE855aD5F565F4Ce127f24279');
 console.log('This shows what toPayload expects as an object');
 console.log(solidityFunction);
 var payloadData = solidityFunction.toPayload([toAccount, 3]).data;
@@ -284,7 +282,7 @@ console.log(payloadData);
 
 gasPrice = web3.eth.gasPrice;
 gasPriceHex = web3.toHex(gasPrice);
-gasLimitHex = web3.toHex(300000);
+gasLimitHex = web3.toHex(6000000);
 
 console.log('Current gasPrice: ' + gasPrice + ' OR ' + gasPriceHex);
 
@@ -299,7 +297,7 @@ var rawTx = {
     to: walletContractAddress,
     from: fromAccount,
     value: '0x00',
-    gas: 500000,
+    gas: 5000000,
     data: payloadData,
     //自訂的 chainId 正式       0x01
     //測試的         testnet    0x03
@@ -319,7 +317,7 @@ if (tx.verifySignature()) {
     console.log('Signature Checks out!');
 }
 
-
+/* 2017-09-24 暫時注解合約
 web3.eth.sendRawTransaction("0x"+serializedTx.toString('hex'), function (err, hash) {
     if (err) {
         console.log('Error:');
@@ -329,7 +327,7 @@ web3.eth.sendRawTransaction("0x"+serializedTx.toString('hex'), function (err, ha
         console.log('Transaction receipt hash pending');
         console.log(hash);
     }
-});
+});*/
 /*
 var result=myContractInstanceTwo.withdraw(tx.toSource(),function (err,result) {
     console.log(err);
@@ -352,7 +350,7 @@ var rawTxTwo = {
     to: toAccount,
     from: fromAccount,
     value: '0x15',
-    gas: 500000,
+    gas: 5000000,
     input:'這個醫生的評價非常好,每次看病都很有精神',
     //自訂的 chainId 正式       0x01
     //測試的         testnet    0x03
